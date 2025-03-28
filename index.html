@@ -48,6 +48,31 @@
         const symbols = ["🍒", "🍋", "🍉", "🍊", "⭐", "💎"];
         
         function spin() {
+            const button = document.querySelector("button");
+            button.disabled = true; // Désactiver le bouton
+            let interval;
+            let counter = 0;
+    
+            // Fonction pour faire tourner les roues rapidement
+            function animateReels() {
+                document.getElementById("reel1").textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                document.getElementById("reel2").textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                document.getElementById("reel3").textContent = symbols[Math.floor(Math.random() * symbols.length)];
+            }
+    
+            // Lancer l'animation toutes les 100ms
+            interval = setInterval(() => {
+                animateReels();
+                counter += 100;
+                if (counter >= 5000) { // Arrêter après 5 secondes
+                    clearInterval(interval);
+                    finalizeSpin();
+                }
+            }, 100);
+        }
+    
+        // Fonction pour afficher le résultat final
+        function finalizeSpin() {
             let reel1 = symbols[Math.floor(Math.random() * symbols.length)];
             let reel2 = symbols[Math.floor(Math.random() * symbols.length)];
             let reel3 = symbols[Math.floor(Math.random() * symbols.length)];
@@ -61,6 +86,8 @@
             } else {
                 document.getElementById("result").textContent = "Essayez encore !";
             }
+    
+            document.querySelector("button").disabled = false; // Réactiver le bouton
         }
     </script>
 </body>
