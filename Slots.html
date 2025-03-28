@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine à sous</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: green;
+            font-family: Arial, sans-serif;
+        }
+        .slot-machine {
+            display: flex;
+            justify-content: center;
+            margin: 20px;
+        }
+        .reel {
+            width: 80px;
+            height: 80px;
+            margin: 10px;
+            font-size: 2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #000;
+            background: #fff;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Machine à sous</h1>
+    <div class="slot-machine">
+        <div class="reel" id="reel1">🍒</div>
+        <div class="reel" id="reel2">🍋</div>
+        <div class="reel" id="reel3">🍉</div>
+    </div>
+    <button onclick="spin()">Jouer</button>
+    <p id="result"></p>
+
+    <script>
+        const symbols = ["🍒", "🍋", "🍉", "🍊", "⭐", "💎"];
+        
+        function spin() {
+            let reel1 = symbols[Math.floor(Math.random() * symbols.length)];
+            let reel2 = symbols[Math.floor(Math.random() * symbols.length)];
+            let reel3 = symbols[Math.floor(Math.random() * symbols.length)];
+            
+            document.getElementById("reel1").textContent = reel1;
+            document.getElementById("reel2").textContent = reel2;
+            document.getElementById("reel3").textContent = reel3;
+            
+            if (reel1 === reel2 && reel2 === reel3) {
+                document.getElementById("result").textContent = "🎉 Jackpot ! Vous avez gagné !";
+            } else {
+                document.getElementById("result").textContent = "Essayez encore !";
+            }
+        }
+    </script>
+</body>
+</html>
